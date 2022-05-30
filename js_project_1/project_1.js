@@ -10,13 +10,29 @@ const personalMovieDB = {
     privat: false
 };
 
-const questOne = prompt("Один из последних просмотренных фильмов?", ""),
-      questTwo = prompt("На сколько оцените его?", ""),
-      questThree = prompt("Один из последних просмотренных фильмов?", ""),
-      questFour = prompt("На сколько оцените его?", "");
+for (let i = 0; i < 2; i++) {
+    const questOne = prompt("Один из последних просмотренных фильмов?", ""),
+          questTwo = prompt("На сколько оцените его?", "");
 
+    if (questOne != null && questTwo != null && questOne != '' && questTwo != '' && questOne.length <50) {
+        personalMovieDB.movies[questOne] = questTwo;
+        console.log('OK');
+    } else {
+        console.log('ERROR');
+        i--;
+    }
 
-personalMovieDB.movies[questOne] = questTwo;  // лучше использовать [], чтобы избежать багов, НЕ movies.questOne
-personalMovieDB.movies[questThree] = questFour;
+}
 
 console.log(personalMovieDB);
+
+
+if (personalMovieDB.count < 10) {
+    alert('There is not enought movies');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    alert('You are a classic spectator!');
+} else if (personalMovieDB.count >= 30) {
+    alert('You are a movie maniac!');
+} else {
+    alert('Something goes wong:(');
+}
